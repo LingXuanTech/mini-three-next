@@ -19,8 +19,7 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true,
-    "baseUrl": "./",
-    "types": ["src/*.d.ts"],
+    "baseUrl": "./"
   },
   "include": ["src"]
 }

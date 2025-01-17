@@ -14,5 +14,10 @@ export default defineConfig({
             formats: ["es", "cjs", "umd", "iife"],
             fileName: (format) => `index.${format}.js`,
         },
+        rollupOptions: {
+            output: {
+              extend: true, // 允许非合法的标识符
+            },
+          },
     },
 } satisfies UserConfig);
