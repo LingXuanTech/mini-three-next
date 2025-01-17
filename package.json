@@ -1,0 +1,34 @@
+{
+  "name": "mini-three-next",
+  "private": false,
+  "version": "0.0.0",
+  "type": "module",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.es.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "tsc && vite build --watch",
+    "start": "vite --host --open",
+    "build": "tsc && vite build",
+    "build:types": "dts-bundle-generator --config ./dts-bundle-generator.config.ts",
+    "lint:scripts": "eslint ./src --ext .ts",
+    "format:scripts": "prettier ./src --write"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.18.0",
+    "@types/node": "^22.10.7",
+    "@types/three": "^0.172.0",
+    "dts-bundle-generator": "^9.5.1",
+    "eslint": "^9.18.0",
+    "typescript": "~5.6.3",
+    "typescript-eslint": "^8.20.0",
+    "vite": "^6.0.5",
+    "vite-plugin-dts": "^4.5.0"
+  },
+  "dependencies": {
+    "three": "^0.172.0"
+  }
+}
