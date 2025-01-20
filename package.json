@@ -2,6 +2,19 @@
   "name": "mini-three-next",
   "private": false,
   "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/LingXuanTech/mini-three-next.git"
+  },
+  "keywords": [
+    "miniprogram,threejs"
+  ],
+  "author": "Eleven",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LingXuanTech/mini-three-next/issues"
+  },
+  "homepage": "https://github.com/LingXuanTech/mini-three-next#readme",
   "type": "module",
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.js",
