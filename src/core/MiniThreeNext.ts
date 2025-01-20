@@ -1,10 +1,14 @@
-import * as THREE from 'three';
+import { WebGLRenderer, FileLoader as ThreeFileLoader, TextureLoader as ThreeTextureLoader } from 'three';
 
 import Canvas from './Canvas';
 import Environment from './Environment';
 import EventAdapter from './EventAdapter';
 import FileLoader from './FileLoader';
 import TextureLoader from './TextureLoader';
+
+interface MiniThreeNextOptions { 
+    useCustomLoader?: boolean
+}
 
 class MiniThreeNext {
     /**
@@ -13,23 +17,23 @@ class MiniThreeNext {
      * default file and texture loaders, and adapts the event handling and rendering
      * process to work with the wx canvas.
      */
-
-    static init() {
+    static init(options: MiniThreeNextOptions = {useCustomLoader: true}): void {
         Environment.init();
 
         // 替换资源加载器
-        (THREE as any).FileLoader = FileLoader as any;
-        (THREE as any).TextureLoader = TextureLoader;
+        if (options.useCustomLoader) {
+            Object.assign(ThreeFileLoader.prototype, FileLoader.prototype);
+            Object.assign(ThreeTextureLoader.prototype, TextureLoader.prototype);
+        }
 
         // 添加事件适配
-        const originalCreateRenderer = THREE.WebGLRenderer.prototype.constructor;
-        (THREE as any).WebGLRenderer = function (this: THREE.WebGLRenderer, params: any) {
+        const originalCreateRenderer = WebGLRenderer.prototype.constructor;
+        WebGLRenderer.prototype.constructor = function (params: any) {
             const canvas = params?.canvas || new Canvas().getCanvas();
             EventAdapter.adaptCanvas(canvas);
             return originalCreateRenderer.call(this, { ...params, canvas });
-        } as any;
+        };
     }
 }
 
 export default MiniThreeNext;
-

@@ -1,13 +1,13 @@
-import * as THREE from 'three';
+import { TextureLoader as THREETextureLoader, Texture as THREETexture } from 'three';
 
-export default class TextureLoader extends THREE.TextureLoader {
+export default class TextureLoader extends THREETextureLoader {
   load(
     url: string,
-    onLoad: (texture: THREE.Texture) => void,
+    onLoad: (texture: THREETexture) => void,
     onProgress?: (event: ProgressEvent) => void,
     onError?: (event: ErrorEvent) => void
-  ): THREE.Texture {
-    const texture = new THREE.Texture();
+  ): THREETexture {
+    const texture = new THREETexture();
     wx.request({
       url,
       responseType: 'arraybuffer',

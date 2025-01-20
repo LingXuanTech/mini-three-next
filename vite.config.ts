@@ -17,6 +17,7 @@ export default defineConfig({
         rollupOptions: {
             output: {
               extend: true, // 允许非合法的标识符
+              inlineDynamicImports: true,
             },
           },
     },

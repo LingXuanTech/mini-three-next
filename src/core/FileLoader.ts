@@ -1,7 +1,7 @@
-import * as THREE from 'three';
+import {FileLoader as THREEFileLoader, LoadingManager as THREELoadingManager} from 'three';
 
-export default class FileLoader extends THREE.FileLoader {
-  constructor(manager?: THREE.LoadingManager) {
+export default class FileLoader extends THREEFileLoader {
+  constructor(manager?: THREELoadingManager) {
     super(manager);
   }
 
