@@ -22,6 +22,7 @@ export default class TextureLoader extends THREE.TextureLoader {
         };
       },
       fail: (err: any) => onError && onError(new ErrorEvent('error', { error: err })),
+      onProgress: (event: any) => onProgress?.(event)
     });
     return texture;
   }

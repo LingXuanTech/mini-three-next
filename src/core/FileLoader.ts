@@ -14,8 +14,9 @@ export default class FileLoader extends THREE.FileLoader {
     wx.request({
       url,
       responseType: 'arraybuffer',
-      success: (res) => onLoad(res.data),
-      fail: (err) => onError && onError(new ErrorEvent('error', { error: err })),
+      success: (res: { data: any; }) => onLoad(res.data),
+      fail: (err: any) => onError && onError(new ErrorEvent('error', { error: err })),
+      onProgress: (event: any) => onProgress?.(event)
     });
   }
 }
