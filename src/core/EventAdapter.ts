@@ -1,12 +1,12 @@
 export default class EventAdapter {
-    static adaptCanvas(canvas: any) {
+    static adaptCanvas(canvas: any, globalEnv: any): void {
       canvas.addEventListener = (type: string, listener: Function) => {
         if (type === 'touchstart') {
-          wx.onTouchStart((e: { touches: any; }) => listener(e.touches));
+          globalEnv.onTouchStart((e: { touches: any; }) => listener(e.touches));
         } else if (type === 'touchmove') {
-          wx.onTouchMove((e: { touches: any; }) => listener(e.touches));
+          globalEnv.onTouchMove((e: { touches: any; }) => listener(e.touches));
         } else if (type === 'touchend') {
-          wx.onTouchEnd((e: { changedTouches: any; }) => listener(e.changedTouches));
+          globalEnv.onTouchEnd((e: { changedTouches: any; }) => listener(e.changedTouches));
         }
       };
     }

@@ -7,7 +7,8 @@ import FileLoader from './FileLoader';
 import TextureLoader from './TextureLoader';
 
 interface MiniThreeNextOptions { 
-    useCustomLoader?: boolean
+    useCustomLoader?: boolean;
+    globalEnv?: any;
 }
 
 class MiniThreeNext {
@@ -17,8 +18,8 @@ class MiniThreeNext {
      * default file and texture loaders, and adapts the event handling and rendering
      * process to work with the wx canvas.
      */
-    static init(options: MiniThreeNextOptions = {useCustomLoader: true}): void {
-        Environment.init();
+    static init(options: MiniThreeNextOptions = {useCustomLoader: true, globalEnv: wx}): void {
+        Environment.init(options.globalEnv);
 
         // 替换资源加载器
         if (options.useCustomLoader) {
@@ -30,7 +31,7 @@ class MiniThreeNext {
         const originalCreateRenderer = WebGLRenderer.prototype.constructor;
         WebGLRenderer.prototype.constructor = function (params: any) {
             const canvas = params?.canvas || new Canvas().getCanvas();
-            EventAdapter.adaptCanvas(canvas);
+            EventAdapter.adaptCanvas(canvas, options.globalEnv);
             return originalCreateRenderer.call(this, { ...params, canvas });
         };
     }
